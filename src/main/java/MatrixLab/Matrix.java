@@ -24,6 +24,28 @@ public class Matrix implements IMatrix {
     }
 
     public double determinant() {
-        return 0;
+        double res=0;
+        if(1 == size){
+            return this.get(0,0);
+        }
+        int flag = 1;
+
+        for(int j=0;j<size;j++) {
+            Matrix minor = new Matrix(size - 1);
+            for (int str = 1;str<size;str++) {
+                for(int clm=0;clm<j;clm++){
+                    minor.set(str-1,clm,this.get(str,clm));
+                }
+                for(int clm=j+1;clm<size;clm++) {
+                    minor.set(str - 1, clm - 1, this.get(str, clm));
+                }
+            }
+
+            res+=flag*minor.determinant();
+            flag*=-1;
+        }
+
+
+        return res;
     }
 }
