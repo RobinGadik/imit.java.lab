@@ -12,15 +12,16 @@ public class DataIterator implements Iterator<Integer> {
 
     public DataIterator(Data d) {
         this.d = d;
-        groupNumber=0;
-        elemNumber=0;
+        groupNumber=-1;
+        elemNumber=-1;
     }
 
     public boolean hasNext() {
-        if(d.getM()[groupNumber].getDataLength() > elemNumber + 1 ){
+
+        if(d.getM()[Integer.max(groupNumber,0)].getDataLength() > elemNumber + 1 ){
             return true;
         }
-        for(int i=groupNumber;i<d.getMLength();i++){
+        for(int i=groupNumber+1;i<d.getMLength();i++){
             if(d.getM()[i].getDataLength()>0)return true;
         }
 
@@ -28,6 +29,11 @@ public class DataIterator implements Iterator<Integer> {
     }
 
     public Integer next() {
+        if(groupNumber == -1 || elemNumber == -1){
+            if(d.getM().length == 0)throw new NoSuchElementException("no group");
+            groupNumber = 0;
+            elemNumber = 0;
+        }
         if(d.getM()[groupNumber].getDataLength() > elemNumber + 1 ){
             elemNumber++;
             return d.getM()[groupNumber].getData()[elemNumber];
