@@ -6,6 +6,9 @@ public class Human {
     private String fatherName;
     private int age;
 
+    public Human() {
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
