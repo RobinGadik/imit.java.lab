@@ -70,7 +70,7 @@ public class Matrix implements IMatrix {
         Matrix matrix = (Matrix) o;
 
         if (size != matrix.size) return false;
-        return Arrays.equals(m, matrix.m);
+        return Arrays.equals(m,matrix.m);
     }
 
     @Override
