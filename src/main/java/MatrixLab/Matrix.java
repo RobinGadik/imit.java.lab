@@ -1,5 +1,7 @@
 package MatrixLab;
 
+import java.util.Arrays;
+
 public class Matrix implements IMatrix {
     public static boolean testing(){return true;}
 
@@ -47,5 +49,23 @@ public class Matrix implements IMatrix {
 
 
         return res;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Matrix matrix = (Matrix) o;
+
+        if (size != matrix.size) return false;
+        return Arrays.equals(m, matrix.m);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Arrays.hashCode(m);
+        result = 31 * result + size;
+        return result;
     }
 }
