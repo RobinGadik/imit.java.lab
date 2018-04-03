@@ -1,8 +1,6 @@
 package ListLab;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PhoneBook {
     private Map<Human, List<String>> map;
@@ -30,6 +28,18 @@ public class PhoneBook {
 
         if(map.containsKey(a)){
             c = new ArrayList<String>(map.get(a));
+        }
+
+        return c;
+    }
+
+    public Set<Human> find(String a){
+        Set<Human> c = new TreeSet<Human>();
+
+        for(Human i:map.keySet()){
+            if(map.get(i).contains(a)){
+                c.add(i);
+            }
         }
 
         return c;
