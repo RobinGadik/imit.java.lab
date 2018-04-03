@@ -14,5 +14,15 @@ public class ListDemo {
         return c;
     }
 
+    public static  List<Human> sameSurname(List<Human> a,Human b){
+        List<Human> c = new ArrayList<Human>();
+        for(Human h:a){
+            if(h.getSurname().equals(b.getSurname())){
+                c.add(h);
+            }
+        }
+        return c;
+    }
+
 
 }
