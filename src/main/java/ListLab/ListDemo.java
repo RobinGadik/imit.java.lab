@@ -3,6 +3,7 @@ package ListLab;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class ListDemo {
     public static List<String> firstSymbolEquals(List<String> a,char b){
@@ -48,5 +49,17 @@ public class ListDemo {
         return c;
     }
 
+    public static<T extends Human> Set<T> oldest(List<T> a){
+        Set<T> c;
+        c = new TreeSet<T>();
+        int max = -Integer.MAX_VALUE;
+        for(T i:a){
+            if(i.getAge()>max)max = i.getAge();
+        }
 
+        for(T i:a){
+            if(i.getAge() == max)c.add(i);
+        }
+        return c;
+    }
 }
