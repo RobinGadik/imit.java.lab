@@ -102,4 +102,16 @@ public class ListDemo {
 
         return c;
     }
+
+    public static Set<Integer> youngetThen18(Map<Integer,Human> a){
+        int up = 18;
+        Set<Integer> c = new TreeSet<Integer>();
+
+        for(Integer i:a.keySet()){
+            if(a.get(i).getAge() < up){
+                c.add(i);
+            }
+        }
+        return c;
+    }
 }
