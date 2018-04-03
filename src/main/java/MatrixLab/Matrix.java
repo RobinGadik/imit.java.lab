@@ -5,8 +5,12 @@ import java.util.Arrays;
 public class Matrix implements IMatrix {
     public static boolean testing(){return true;}
 
-    double[] m;
-    int size;
+    private double[] m;
+    private int size;
+    private boolean calcDeterminant = false;
+    private double detCalc;
+
+
     Matrix(){
         m = new double[1];
         size = 1;
@@ -17,7 +21,12 @@ public class Matrix implements IMatrix {
         size = n;
     }
 
+    public int getSize(){
+        return size;
+    }
+
     public void set(int str, int clm, double vol) {
+        calcDeterminant = false;
         m[str*size+clm] = vol;
     }
 
@@ -26,6 +35,7 @@ public class Matrix implements IMatrix {
     }
 
     public double determinant() {
+        if(calcDeterminant)return detCalc;
         double res=0;
         if(1 == size){
             return this.get(0,0);
@@ -47,7 +57,8 @@ public class Matrix implements IMatrix {
             flag*=-1;
         }
 
-
+        calcDeterminant = true;
+        detCalc = res;
         return res;
     }
 
