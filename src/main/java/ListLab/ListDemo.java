@@ -1,9 +1,6 @@
 package ListLab;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class ListDemo {
     public static List<String> firstSymbolEquals(List<String> a,char b){
@@ -93,6 +90,16 @@ public class ListDemo {
 
 
         }
+        return c;
+    }
+
+    public static Set<Human> choosens(Map<Integer,Human> a, Set<Integer> b){
+        Set<Human> c = new TreeSet<Human>();
+
+        for(Integer i:b){
+            c.add(a.get(i));
+        }
+
         return c;
     }
 }
