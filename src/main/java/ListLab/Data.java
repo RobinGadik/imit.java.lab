@@ -4,6 +4,10 @@ public class Data {
     String name;
     Group[] m;
 
+    public DataIterator iterator(){
+        return new DataIterator(this);
+    }
+
     public String getName() {
         return name;
     }
