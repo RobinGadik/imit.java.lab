@@ -1,8 +1,9 @@
 package MatrixLab;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Matrix implements IMatrix {
+public class Matrix implements IMatrix , Serializable {
     public static boolean testing(){return true;}
 
     private double[] m;
