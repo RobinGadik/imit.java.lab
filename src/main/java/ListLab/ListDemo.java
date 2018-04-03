@@ -25,7 +25,8 @@ public class ListDemo {
 
     public static  List<Human> goOutHuman(List<Human> a,Human b){
         List<Human> c = new ArrayList<Human>();
-        for(Human h:a){
+        List<Human> d = new ArrayList<>(a);
+        for(Human h:d){
             if(!h.equals(b))c.add(h);
         }
 
