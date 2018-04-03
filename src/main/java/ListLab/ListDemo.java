@@ -49,7 +49,7 @@ public class ListDemo {
         return c;
     }
 
-    public static<T extends Human> Set<T> oldest(List<T> a){
+    public static <T extends Human> Set<T> oldest(List<T> a){
         Set<T> c;
         c = new TreeSet<T>();
         int max = -Integer.MAX_VALUE;
@@ -59,6 +59,39 @@ public class ListDemo {
 
         for(T i:a){
             if(i.getAge() == max)c.add(i);
+        }
+        return c;
+    }
+
+    public static <T extends Human> List<T> SNFsortedArray(Set<T> a){
+        List<T> c = new ArrayList<T>();
+
+        for(T i:a){
+            if(c.isEmpty())c.add(i);
+            else {
+                boolean flag = false;
+                for (int j = 0; j < c.size(); j++) {
+
+                    if (c.get(j).getSurname().compareTo(i.getSurname()) < 0) {
+                        flag = true;
+                    } else if (c.get(j).getName().compareTo(i.getName()) < 0) {
+                        flag = true;
+                    } else if (c.get(j).getFatherName().compareTo(i.getFatherName()) < 0) {
+                        flag = true;
+                    }
+
+
+                    if (flag) {
+                        c.add(j, i);
+                        j=c.size();
+                    }
+                }
+                if (!flag) {
+                    c.add(i);
+                }
+            }
+
+
         }
         return c;
     }
