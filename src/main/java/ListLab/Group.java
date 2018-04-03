@@ -16,6 +16,10 @@ public class Group {
         return data;
     }
 
+    public int getDataLength() {
+        return data.length;
+    }
+
     public void setData(int[] data) {
         this.data = data;
     }
@@ -25,4 +29,5 @@ public class Group {
         this.index = index;
         this.data = data;
     }
+
 }
