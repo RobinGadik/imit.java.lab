@@ -48,20 +48,20 @@ public class ListDemo {
     }
 
     public static <T extends Human> Set<T> oldest(List<T> a){
-        Set<T> c;
-        c = new TreeSet<T>();
+        Set<T > c;
+        c = new HashSet<T>();
         int max = -Integer.MAX_VALUE;
         for(T i:a){
             if(i.getAge()>max)max = i.getAge();
         }
 
         for(T i:a){
-            if(i.getAge() == max)c.add(i);
+            if(i.getAge() == max) c.add(i);
         }
         return c;
     }
 
-    public static <T extends Human> List<T> SNFsortedArray(Set<T> a){
+    public static <T extends Human> List<T> SNFsortedArray(List<T> a){
         List<T> c = new ArrayList<T>();
 
         for(T i:a){
@@ -95,7 +95,7 @@ public class ListDemo {
     }
 
     public static Set<Human> choosens(Map<Integer,Human> a, Set<Integer> b){
-        Set<Human> c = new TreeSet<Human>();
+        Set<Human> c = new HashSet<>();
 
         for(Integer i:b){
             c.add(a.get(i));
@@ -106,7 +106,7 @@ public class ListDemo {
 
     public static Set<Integer> youngetThen18(Map<Integer,Human> a){
         int up = 18;
-        Set<Integer> c = new TreeSet<Integer>();
+        Set<Integer> c = new HashSet<Integer>();
 
         for(Integer i:a.keySet()){
             if(a.get(i).getAge() < up){

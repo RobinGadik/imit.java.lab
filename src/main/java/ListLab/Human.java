@@ -72,6 +72,13 @@ public class Human {
         this.fatherName = fatherName;
         this.age = age;
     }
+    public Human(Human a) {
+
+        this.name = a.name;
+        this.surname = a.surname;
+        this.fatherName = a.fatherName;
+        this.age = a.age;
+    }
 
 
 }
