@@ -10,7 +10,7 @@ public class DemoMatrix {
         for(int i=0;i<m.getSize();i++){
             for(int j=0;j<m.getSize();j++){
                 byte[] b;
-                b = ByteBuffer.allocate(8).putDouble(m.get(i,i)).array();
+                b = ByteBuffer.allocate(8).putDouble(m.get(i,j)).array();
 
                 out.write(b,0,8);
             }
@@ -119,7 +119,54 @@ public class DemoMatrix {
         System.out.println("\n Invert matrix is");
         consoleBeatiful(I.getInversionMatrix());
 
-        
+
+
+        System.out.println("\n Serialization public test");
+        ObjectOutputStream seria = null;
+
+        try {
+            seria = new ObjectOutputStream(new FileOutputStream("2.txt"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            seria.writeObject(I);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            seria.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        ObjectInputStream seriaIn = null;
+
+        try {
+            seriaIn = new ObjectInputStream(new FileInputStream("2.txt"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Object what = null;
+
+        try {
+            what = seriaIn.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        if(null != what && what.getClass() == InvertableMatrix.class){
+            InvertableMatrix WOW = (InvertableMatrix) what;
+            consoleBeatiful(WOW);
+            if(WOW.equals(I))System.out.println("Serialization ok");
+            else System.out.println("Serialization fail");
+        }
+
     }
 
 }
