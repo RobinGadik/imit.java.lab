@@ -1,8 +1,8 @@
 package ListLab;
 
 public class Group {
-    int index;
-    int[] data;
+    private int index;
+    private int[] data;
 
     public int getIndex() {
         return index;

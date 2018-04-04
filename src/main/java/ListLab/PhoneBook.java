@@ -5,6 +5,10 @@ import java.util.*;
 public class PhoneBook {
     private Map<Human, List<String>> map;
 
+    public PhoneBook() {
+        map = new HashMap<>();
+    }
+
     public PhoneBook(Map<Human, List<String>> map) {
         this.map = map;
     }
@@ -23,7 +27,7 @@ public class PhoneBook {
         }
     }
 
-    public List<String> gettPhones(Human a){
+    public List<String> getPhones(Human a){
         List<String> c = new ArrayList<String>();
 
         if(map.containsKey(a)){

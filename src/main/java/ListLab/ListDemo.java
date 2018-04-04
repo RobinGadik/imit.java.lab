@@ -25,9 +25,9 @@ public class ListDemo {
 
     public static  List<Human> goOutHuman(List<Human> a,Human b){
         List<Human> c = new ArrayList<Human>();
-        List<Human> d = new ArrayList<>(a);
-        for(Human h:d){
-            if(!h.equals(b))c.add(h);
+
+        for(Human h:a){
+            if(!h.equals(b))c.add(new Human(h));
         }
 
         return c;
@@ -36,12 +36,12 @@ public class ListDemo {
     public static List<Set<Integer>> noCommonWith(List<Set<Integer>> a, Set<Integer> b){
         List<Set<Integer>> c = new ArrayList<Set<Integer>>();
 
-        for(Set<Integer> s:a){
-            boolean flag = true;
+        loop: for(Set<Integer> s:a){
+            //boolean flag = true;
             for(Integer i:s){
-                if(b.contains(i))flag = false;
+                if(b.contains(i)) continue loop;//flag = false;
             }
-            if(flag)c.add(s);
+            c.add(s);
         }
 
         return c;
@@ -62,9 +62,14 @@ public class ListDemo {
     }
 
     public static <T extends Human> List<T> SNFsortedArray(List<T> a){
-        List<T> c = new ArrayList<T>();
+        List<T> c = new ArrayList<T>(a);
+        c.sort((o1, o2) -> {
+            if(!o1.getSurname().equals(o2.getSurname())) return o1.getSurname().compareTo(o2.getSurname());
+            if(!o1.getName().equals(o2.getName())) return o1.getName().compareTo(o2.getName());
+            return o1.getFatherName().compareTo(o2.getFatherName());
+        });
 
-        for(T i:a){
+/*        for(T i:a){
             if(c.isEmpty())c.add(i);
             else {
                 boolean flag = false;
@@ -90,7 +95,7 @@ public class ListDemo {
             }
 
 
-        }
+        }*/
         return c;
     }
 
@@ -98,15 +103,18 @@ public class ListDemo {
         Set<Human> c = new HashSet<>();
 
         for(Integer i:b){
-            c.add(a.get(i));
+            if(a.containsKey(i)) {
+                c.add(a.get(i));
+            }
+
         }
 
         return c;
     }
 
-    public static Set<Integer> youngetThen18(Map<Integer,Human> a){
+    public static List<Integer> youngetThen18(Map<Integer,Human> a){
         int up = 18;
-        Set<Integer> c = new HashSet<Integer>();
+        List<Integer> c = new ArrayList<Integer>();
 
         for(Integer i:a.keySet()){
             if(a.get(i).getAge() < up){

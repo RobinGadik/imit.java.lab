@@ -37,9 +37,9 @@ class ListDemoTest {
         a.add(new Human("1","1","1",13));
         c.add(new Human("2","2","2",2));
         a.add(new Human("2","2","2",2));
-        assertEquals(c, ListDemo.goOutHuman(a,b));
         a.get(1).setName("123");
-        assertNotEquals(a.get(1),c.get(0));
+        //assertNotEquals(a.get(1),c.get(0));
+        assertEquals(c, ListDemo.goOutHuman(a,b));
     }
 
     @Test
@@ -69,9 +69,9 @@ class ListDemoTest {
         a.add(new Human("1","2","3",13));
         a.add(new Human("1","3","5",87));
         a.add(new Human("2","6","6",87));
+        a.add(new Student("7","a","b",100,"imit"));
 
-        c.add(new Human("1","3","5",87));
-        c.add(new Human("2","6","6",87));
+        c.add(new Student("7","a","b",100,"imit"));
 
         assertTrue(c.containsAll(ListDemo.oldest(a)));
     }
@@ -86,10 +86,10 @@ class ListDemoTest {
         a.add(new Human("2","2","2",4));
         a.add(new Human("1","1","1",1));
 
-        c.add(new Human("2","2","2",4));
-        c.add(new Human("2","2","1",3));
-        c.add(new Human("1","2","1",2));
         c.add(new Human("1","1","1",1));
+        c.add(new Human("1","2","1",2));
+        c.add(new Human("2","2","1",3));
+        c.add(new Human("2","2","2",4));
 
         assertEquals(c,ListDemo.SNFsortedArray(a));
     }
@@ -102,8 +102,10 @@ class ListDemoTest {
         c.add(new Human("1","1","1",1));
         c.add(new Human("1","1","1",2));
 
+
         b.add(1);
         b.add(2);
+        b.add(155);
 
         a.put(1,new Human("1","1","1",1));
         a.put(2,new Human("1","1","1",2));

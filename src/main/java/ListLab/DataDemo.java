@@ -8,12 +8,12 @@ public class DataDemo {
         List<Integer> c = new LinkedList<Integer>();
         DataIterator a = d.iterator();
         while(a.hasNext()){
-            try {
-                c.add(a.next());
-            } catch (Exception e){
-                break;
-            }
+            c.add(a.next());
         }
         return c;
+    }
+
+    public static void main(){
+
     }
 }

@@ -1,8 +1,8 @@
 package ListLab;
 
-public class Data {
-    String name;
-    Group[] m;
+public class Data implements Iterable<Integer>{
+    private String name;
+    private Group[] m;
 
     public DataIterator iterator(){
         return new DataIterator(this);

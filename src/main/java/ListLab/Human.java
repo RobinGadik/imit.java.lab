@@ -78,6 +78,7 @@ public class Human {
         this.surname = a.surname;
         this.fatherName = a.fatherName;
         this.age = a.age;
+        System.out.print("Copy human");
     }
 
 

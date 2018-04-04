@@ -5,9 +5,9 @@ import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
 public class DataIterator implements Iterator<Integer> {
-    Data d;
-    int groupNumber;
-    int elemNumber;
+    private Data d;
+    private int groupNumber;
+    private int elemNumber;
 
 
     public DataIterator(Data d) {
