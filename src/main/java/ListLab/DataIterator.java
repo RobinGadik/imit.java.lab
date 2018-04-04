@@ -18,7 +18,7 @@ public class DataIterator implements Iterator<Integer> {
 
     public boolean hasNext() {
 
-        if(d.getM()[Integer.max(groupNumber,0)].getDataLength() > elemNumber + 1 ){
+        if(d.getM()[Integer.max(groupNumber,0)].getDataLength() >  elemNumber + 1 ){
             return true;
         }
         for(int i=groupNumber+1;i<d.getMLength();i++){
@@ -33,12 +33,13 @@ public class DataIterator implements Iterator<Integer> {
             if(d.getM().length == 0)throw new NoSuchElementException("no group");
             groupNumber = 0;
             elemNumber = 0;
+            return d.getM()[groupNumber].getData()[elemNumber];
         }
         if(d.getM()[groupNumber].getDataLength() > elemNumber + 1 ){
             elemNumber++;
             return d.getM()[groupNumber].getData()[elemNumber];
         }
-        for(int i=groupNumber;i<d.getMLength();i++){
+        for(int i=groupNumber+1;i<d.getMLength();i++){
             if(d.getM()[i].getDataLength()>0){
                 groupNumber = i;
                 elemNumber = 0;
