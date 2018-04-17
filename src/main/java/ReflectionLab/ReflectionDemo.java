@@ -1,9 +1,7 @@
 package ReflectionLab;
 
 import ListLab.Human;
-import sun.reflect.generics.tree.ReturnType;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -11,7 +9,7 @@ import java.util.List;
 
 public class ReflectionDemo {
 
-    public int humanListCheck(List<Object> a){
+    public static int humanListCheck(List<Object> a){
         int res=0;
         for(Object o:a){
             if(o.getClass() == Human.class || o.getClass().getSuperclass() == Human.class){
@@ -22,7 +20,7 @@ public class ReflectionDemo {
         return res;
     }
 
-    public List<String> methodsList(Object o){
+    public static List<String> methodsList(Object o){
         List<String> a = new ArrayList<>();
 
         Method[] met = o.getClass().getMethods();
@@ -36,7 +34,7 @@ public class ReflectionDemo {
         return a;
     }
 
-    public List<String> superClassList(Object o){
+    public static List<String> superClassList(Object o){
         List<String> a = new ArrayList<>();
 
         Class c = o.getClass();
@@ -51,7 +49,7 @@ public class ReflectionDemo {
     }
 
 
-    public int execution(List<Object> a){
+    public static int execution(List<Object> a){
         int res=0;
         for(Object o:a){
             for(Class c:o.getClass().getInterfaces()){
@@ -67,7 +65,7 @@ public class ReflectionDemo {
     }
 
 
-    public List<String> getGettersSetters(Object o){
+    public static List<String> getGettersSetters(Object o){
         List<String> a = new ArrayList<>();
 
         Method[] methods = o.getClass().getDeclaredMethods();
