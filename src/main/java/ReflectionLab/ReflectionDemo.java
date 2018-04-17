@@ -34,7 +34,19 @@ public class ReflectionDemo {
         return a;
     }
 
+    public List<String> superClassList(Object o){
+        List<String> a = new ArrayList<>();
 
+        Class c = o.getClass();
+
+        while(c.getSuperclass() != Object.class){
+            a.add(c.getName());
+            c = o.getClass().getSuperclass();
+        }
+        a.add(c.getName());
+
+        return a;
+    }
 
 
 }
