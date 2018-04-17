@@ -50,6 +50,35 @@ public class DemoMatrix {
         }
     }
 
+    public static void streamOutputBeatiful(IMatrix m, Writer wr) throws IOException {
+
+        wr.write( Integer.toString(m.getSize() ) );
+
+        wr.write('\n');
+        for(int i=0;i<m.getSize();i++){
+            for(int j=0;j<m.getSize();j++){
+                wr.write( String.valueOf(m.get(i,j) )  );
+                wr.write(' ');
+            }
+            wr.write('\n');
+        }
+    }
+
+    public static IMatrix streamInputBeatiful(Reader r) throws IOException {
+        System.out.println(r.read());
+        //int size = r.read();
+        //System.out.println(size);
+        IMatrix m = new Matrix(2);//size);
+        for(int i=0;i<m.getSize();i++){
+            for(int j=0;j<m.getSize();j++){
+                m.set(i,j,r.read() );
+            }
+        }
+        return m;
+    }
+
+
+
     public static double elemSum(IMatrix m){
         double res=0;
         for(int i=0;i<m.getSize();i++){
@@ -60,7 +89,7 @@ public class DemoMatrix {
         return res;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException {
         IMatrix A = new Matrix(2);
         IInvertableMatrix I = new InvertableMatrix(2);
         FileInputStream i = null;
@@ -87,8 +116,15 @@ public class DemoMatrix {
             e.printStackTrace();
         }
 
+        Writer wr = new FileWriter("4.txt");
+        streamOutputBeatiful(A,wr);
+        wr.close();
 
+        Reader r = new FileReader("4.txt");
+        IMatrix NA = streamInputBeatiful(r);
+        r.close();
 
+        consoleBeatiful(NA);
         try {
             i = new FileInputStream("1.txt");
         } catch (FileNotFoundException e) {

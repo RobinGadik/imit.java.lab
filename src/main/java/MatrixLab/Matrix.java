@@ -26,12 +26,22 @@ public class Matrix implements IMatrix , Serializable {
         return size;
     }
 
+    private boolean scCheck(int str, int clm){
+        if(str < 0 || str >= size)return false;
+
+        if(clm < 0 || clm >= size)return false;
+
+        return true;
+    }
+
     public void set(int str, int clm, double vol) {
+        if(!scCheck(str,clm))throw new ArrayIndexOutOfBoundsException();
         calcDeterminant = false;
         m[str*size+clm] = vol;
     }
 
     public double get(int str, int clm) {
+        if(!scCheck(str,clm))throw new ArrayIndexOutOfBoundsException();
         return m[str*size+clm];
     }
 
@@ -54,7 +64,7 @@ public class Matrix implements IMatrix , Serializable {
                 }
             }
 
-            res+=flag*minor.determinant();
+            res+=flag*minor.determinant()*m[0*size + j];
             flag*=-1;
         }
 

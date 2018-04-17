@@ -36,6 +36,8 @@ class InvertableMatrixTest {
         exp.set(1,0,1);
         exp.set(1,1,0);
 
+        //DemoMatrix.consoleBeatiful(m.getInversionMatrix());
+
         assertEquals(exp,m.getInversionMatrix());
     }
 
