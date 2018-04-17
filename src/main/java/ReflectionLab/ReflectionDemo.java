@@ -49,4 +49,19 @@ public class ReflectionDemo {
     }
 
 
+    public void execution(List<Object> a){
+        for(Object o:a){
+            for(Class c:o.getClass().getInterfaces()){
+                if(c == Executable.class){
+                    ((Executable) o).execute();
+                    break;
+                }
+            }
+
+        }
+    }
+
+
+
+
 }
