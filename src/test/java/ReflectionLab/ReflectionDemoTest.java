@@ -50,12 +50,44 @@ class ReflectionDemoTest {
         assertEquals(a,ReflectionDemo.superClassList(o));
     }
 
+
+    int SU = 0;
     @Test
     void execution() {
+        class test implements Executable{
+
+            @Override
+            public void execute() {
+               // System.out.println("OH MY (GOD or SHINDERY)");
+                SU = 1;
+            }
+        }
+
+        SU=0;
+        ArrayList<Object> a = new ArrayList<>();
+        a.add(new Object());
+        a.add(new test());
+        ReflectionDemo.execution(a);
+        assertEquals(1,SU);
     }
 
     @Test
     void getGettersSetters() {
+        Object o = new Human();
+        List<String> exp = new ArrayList<String>();
+
+        exp.add("getName");
+        exp.add( "setName");
+        exp.add( "setFatherName");
+        exp.add(  "setSurname");
+        exp.add(  "getSurname");
+        exp.add(  "getFatherName");
+        exp.add(  "setAge");
+        exp.add(   "getAge");
+        exp.sort((String o1,String o2) -> o1.compareTo(o2));
+        List<String> ans = ReflectionDemo.getGettersSetters(o);
+        ans.sort((o1, o2) -> o1.compareTo(o2));
+        assertEquals(exp,ans);
     }
 
 }
