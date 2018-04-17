@@ -1,7 +1,9 @@
 package ReflectionLab;
 
 import ListLab.Human;
+import sun.reflect.generics.tree.ReturnType;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -65,6 +67,33 @@ public class ReflectionDemo {
     }
 
 
+    public List<String> getGettersSetters(Object o){
+        List<String> a = new ArrayList<>();
 
+        Method[] methods = o.getClass().getDeclaredMethods();
+
+        for(Method m:methods){
+
+            if(m.getModifiers() == Modifier.PUBLIC){
+                String s = m.getName();
+                if(s.startsWith("set") && m.getParameterCount() == 1 && m.getReturnType() == void.class){
+                    a.add(m.getName());
+                }
+
+                if( s.startsWith("get" ) && m.getParameterCount() == 0 && m.getReturnType() != void.class){
+                    a.add(m.getName());
+                }
+
+                if( (s.startsWith("has") ||  s.startsWith("is") )
+                        && m.getParameterCount() == 0 && m.getReturnType() == boolean.class){
+                    a.add(m.getName());
+                }
+            }
+
+
+        }
+
+        return a;
+    }
 
 }
