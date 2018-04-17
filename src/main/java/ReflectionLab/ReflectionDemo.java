@@ -37,13 +37,14 @@ public class ReflectionDemo {
     public static List<String> superClassList(Object o){
         List<String> a = new ArrayList<>();
 
-        Class c = o.getClass();
+        Class c = o.getClass().getSuperclass();
 
-        while(c.getSuperclass() != Object.class){
-            a.add(c.getName());
-            c = o.getClass().getSuperclass();
+        while(c != Object.class){
+            a.add(c.getSimpleName());
+            c = c.getSuperclass();
         }
-        a.add(c.getName());
+
+        a.add(c.getSimpleName());
 
         return a;
     }

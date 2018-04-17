@@ -1,6 +1,7 @@
 package ReflectionLab;
 
 import ListLab.Human;
+import ListLab.Student;
 import org.junit.jupiter.api.Test;
 
 import javax.jws.Oneway;
@@ -42,6 +43,11 @@ class ReflectionDemoTest {
 
     @Test
     void superClassList() {
+        Object o = new Student();
+        ArrayList<String> a = new ArrayList<String>();
+        a.add("Human");
+        a.add("Object");
+        assertEquals(a,ReflectionDemo.superClassList(o));
     }
 
     @Test
