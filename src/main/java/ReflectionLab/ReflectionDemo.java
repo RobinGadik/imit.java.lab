@@ -9,37 +9,40 @@ import java.util.List;
 
 public class ReflectionDemo {
 
-    public static int humanListCheck(List<Object> a){
-        int res=0;
-        for(Object o:a){
-            if(o.getClass() == Human.class || o.getClass().getSuperclass() == Human.class){
-                res++;
+    public static int humanListCheck(List<Object> a) {
+        int res = 0;
+        for (Object o : a) {
+            Class c = o.getClass();
+            while (c != Object.class) {
+                if (c == Human.class) {
+                    res++;
+                }
+                c = c.getSuperclass();
+
             }
         }
 
         return res;
     }
 
-    public static List<String> methodsList(Object o){
+    public static List<String> methodsList(Object o) {
         List<String> a = new ArrayList<>();
 
         Method[] met = o.getClass().getMethods();
 
-        for(Method m:met){
-            if(m.getModifiers() == Modifier.PUBLIC){
-                a.add(m.getName());
-            }
+        for (Method m : met) {
+            a.add(m.getName());
         }
 
         return a;
     }
 
-    public static List<String> superClassList(Object o){
+    public static List<String> superClassList(Object o) {
         List<String> a = new ArrayList<>();
 
         Class c = o.getClass().getSuperclass();
 
-        while(c != Object.class){
+        while (c != Object.class) {
             a.add(c.getSimpleName());
             c = c.getSuperclass();
         }
@@ -50,46 +53,50 @@ public class ReflectionDemo {
     }
 
 
-    public static int execution(List<Object> a){
-        int res=0;
-        for(Object o:a){
-            for(Class c:o.getClass().getInterfaces()){
-                if(c == Executable.class){
-                    ((Executable) o).execute();
-                    res++;
-                    break;
-                }
-            }
+    public static int execution(List<Object> a) {
+        int res = 0;
+        for (Object o : a) {
+            Class c = o.getClass();
 
+            if (Executable.class.isAssignableFrom(c)) {
+                ((Executable) o).execute();
+                res++;
+            }
         }
         return res;
     }
 
 
-    public static List<String> getGettersSetters(Object o){
+    public static List<String> getGettersSetters(Object o) {
         List<String> a = new ArrayList<>();
+        Class c = o.getClass();
+        while (true) {
+            Method[] methods = c.getDeclaredMethods();
+            for (Method m : methods) {
 
-        Method[] methods = o.getClass().getDeclaredMethods();
-
-        for(Method m:methods){
-
-            if(m.getModifiers() == Modifier.PUBLIC){
                 String s = m.getName();
-                if(s.startsWith("set") && m.getParameterCount() == 1 && m.getReturnType() == void.class){
+                if (s.startsWith("set") && m.getParameterCount() == 1 && (m.getReturnType() == Void.class ||
+                        (m.getReturnType() == void.class)) ) {
                     a.add(m.getName());
                 }
 
-                if( s.startsWith("get" ) && m.getParameterCount() == 0 && m.getReturnType() != void.class){
+                if (s.startsWith("get") && m.getParameterCount() == 0 && (m.getReturnType() != Void.class &&
+                        m.getReturnType() != void.class) ){
                     a.add(m.getName());
                 }
 
-                if( (s.startsWith("has") ||  s.startsWith("is") )
-                        && m.getParameterCount() == 0 && m.getReturnType() == boolean.class){
+                if ((s.startsWith("has") || s.startsWith("is"))
+                        && m.getParameterCount() == 0 && (m.getReturnType() == Boolean.class ||
+                        m.getReturnType() == boolean.class) ) {
                     a.add(m.getName());
                 }
+
             }
-
-
+            if (c != Object.class) {
+                c = c.getSuperclass();
+            } else {
+                break;
+            }
         }
 
         return a;
